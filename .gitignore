@@ -1,0 +1,7 @@
+*.vscode
+*.idea
+*/__pycache__/
+build/
+*.egg-info/
+scrapy.cfg
+setup.py
