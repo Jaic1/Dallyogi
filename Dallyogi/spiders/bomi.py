@@ -4,7 +4,7 @@ import re
 
 
 class BomiSpider(scrapy.spiders.CrawlSpider):
-    # remember to config: username
+    # remember to config: username, ins config
 
     name = 'bomi'
 
@@ -57,13 +57,30 @@ class BomiSpider(scrapy.spiders.CrawlSpider):
 
     def parse_ins(self, response):
         ins_username = response.url.split('/')[-2]
+        if response.status != 200:
+            self.logger.error(f"ins {ins_username} can't response.")
+            yield TweetItem(username='ins-' + ins_username, top_tweet='无法获取response')
+            return
 
-        pattern = re.compile(r"edge_owner_to_timeline_media.*?text\":\"(.*?)\"", re.DOTALL)
-        match = pattern.search(response.text)
+        pattern_edge = re.compile(r"edge_owner_to_timeline_media.*?node.*?edges.*?\[(.*?)\]", re.DOTALL)
+        match_edge = pattern_edge.search(response.text)
         # input_text is the literal string of its UTF-16 meaning, e.g r"\uc5d0"
-        input_text = match.group(1)
-        if input_text is None or input_text == '':
+        input_text = str()
+        try:
+            input_text = match_edge.group(1)
+        except IndexError:
             self.logger.error(f"ins user {ins_username} can't match")
+            yield TweetItem(username='ins-' + ins_username, top_tweet="re can't match.")
+            return
+        if input_text != '':
+            match_text = re.search(r"text\":\"(.*?)\"", input_text, re.DOTALL)
+            input_text = match_text.group(1)
+        else:
+            match_code = re.search(r"edge_owner_to_timeline_media.*?shortcode\":\"(.*?)\"",
+                                   response.text, re.DOTALL)
+            code = match_code.group(1)
+            yield TweetItem(username='ins-' + ins_username, top_tweet=code)
+            return
 
         # convert to UTF-16 string
         output_text = str()
@@ -91,4 +108,4 @@ class BomiSpider(scrapy.spiders.CrawlSpider):
                 i += 1
             if i >= len(input_text):
                 break
-        yield TweetItem(username='ins-'+ins_username, top_tweet=output_text)
+        yield TweetItem(username='ins-' + ins_username, top_tweet=output_text)
