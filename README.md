@@ -14,3 +14,4 @@ specify the source id and receiver id
 ## About
 * prepare to try scrapyd to host the project
 * add more functions about instagram
+* welcome issues, questions, communications
