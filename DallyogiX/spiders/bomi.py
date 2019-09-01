@@ -31,8 +31,8 @@ class BomiSpider(scrapy.Spider):
 
         # init twitter user record
         for twitter_user in self.twitter_users:
-            if not os.path.exists(f"data/twitter/{twitter_user}"):
-                with open(f"data/twitter/{twitter_user}", 'w', encoding='utf8') as f:
+            if not os.path.exists("data/twitter/{}".format(twitter_user)):
+                with open("data/twitter/{}".format(twitter_user), 'w', encoding='utf8') as f:
                     f.write('0')
 
     def start_requests(self):
@@ -64,7 +64,7 @@ class BomiSpider(scrapy.Spider):
                 while tweet[j] != '>':
                     j += 1
                 tweet = tweet[:i] + tweet[j + 1:]
-                j = tweet.find(f"</{flag}>", i)
+                j = tweet.find("</{}>".format(flag), i)
                 if j >= i:
                     tweet = tweet[:j] + tweet[j + 3 + len(flag):]
 
@@ -76,18 +76,18 @@ class BomiSpider(scrapy.Spider):
         tweet.replace('\n', '')
 
         # check if this tweet is a new tweet
-        with open(f"data/twitter/{name}", 'r', encoding='utf8') as f:
+        with open("data/twitter/{}".format(name), 'r', encoding='utf8') as f:
             oldId = f.read()
         if newId == oldId:
             return None
         else:
-            with open(f"data/twitter/{name}", 'w', encoding='utf8') as f:
+            with open("data/twitter/{}".format(name), 'w', encoding='utf8') as f:
                 f.write(newId)
 
         # inform ServerChan
         params = {
-            'text': quote(f"{name}有更新"),
+            'text': quote("{}有更新".format(name)),
             'desp': quote(tweet),
         }
-        requests.get(f"https://sc.ftqq.com/{self.serverChan_SCKEY}.send\
-                    ?text={params['text']}&desp={params['desp']}")
+        requests.get("https://sc.ftqq.com/{}.send?text={}&desp={}".format(
+            self.serverChan_SCKEY, params['text'], params['desp']))
