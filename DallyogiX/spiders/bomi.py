@@ -4,7 +4,7 @@ import os
 import requests
 from urllib.parse import quote
 import random
-import time.sleep
+import time
 
 
 class BomiSpider(scrapy.Spider):
