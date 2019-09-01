@@ -3,14 +3,42 @@ import scrapy
 import os
 import requests
 from urllib.parse import quote
+import random
+import time.sleep
 
 
 class BomiSpider(scrapy.Spider):
     name = 'bomi'
     allowed_domains = ['twitter.com']
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) \
-                            AppleWebKit/537.36 (KHTML, like Gecko) \
-                            Chrome/76.0.3809.132 Safari/537.36"}
+    headers = [
+        {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) "
+                       "AppleWebKit/537.36 (KHTML, like Gecko) "
+                       "Chrome/76.0.3809.132 "
+                       "Safari/537.36"},
+        {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) "
+                       "AppleWebKit/537.36 (KHTML, like Gecko) "
+                       "Chrome/57.0.2987.110 "
+                       "Safari/537.36"},
+        {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) "
+                       "AppleWebKit/537.36 (KHTML, like Gecko) "
+                       "Chrome/61.0.3163.79 "
+                       "Safari/537.36"},
+        {"User-Agent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:55.0) "
+                       "Gecko/20100101 "
+                       "Firefox/55.0 "},
+        {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) "
+                       "AppleWebKit/537.36 (KHTML, like Gecko) "
+                       "Chrome/62.0.3202.89 "
+                       "Safari/537.36"},
+        {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) "
+                       "AppleWebKit/537.36 (KHTML, like Gecko) "
+                       "Chrome/61.0.3163.91 "
+                       "Safari/537.36"},
+        {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) "
+                       "AppleWebKit/537.36 (KHTML, like Gecko) "
+                       "Chrome/63.0.3239.108 "
+                       "Safari/537.36"},
+    ]
 
     # twitter config
     twitter_format = "https://twitter.com/search?f=tweets&q=from%3A{}"
@@ -44,7 +72,8 @@ class BomiSpider(scrapy.Spider):
         while True:
             for twitter_user in self.twitter_users:
                 yield scrapy.Request(self.twitter_format.format(twitter_user),
-                                     self.parse_twitter, headers=self.headers)
+                                     self.parse_twitter, headers=random.choice(self.headers))
+            time.sleep(60)
 
     def parse_twitter(self, response):
         if response.status != 200:
