@@ -15,6 +15,9 @@ SPIDER_MODULES = ['DallyogiX.spiders']
 NEWSPIDER_MODULE = 'DallyogiX.spiders'
 
 
+# disable filtering duplicate requests
+DUPEFILTER_CLASS = 'scrapy.dupefilters.BaseDupeFilter'
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'DallyogiX (+http://www.yourdomain.com)'
 
