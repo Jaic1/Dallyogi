@@ -17,6 +17,10 @@ class BomiSpider(scrapy.Spider):
     twitter_users = [
         '19910303net',
         'firstspring_313',
+        'Apink_2011',
+        'Asterisk813',
+        '8h_13m',
+        'Apinkbm',
     ]
 
     # serverChan config
