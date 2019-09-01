@@ -8,6 +8,7 @@
 import scrapy
 
 
-class TweetItem(scrapy.Item):
-    username = scrapy.Field()
-    top_tweet = scrapy.Field()
+class DallyogixItem(scrapy.Item):
+    # define the fields for your item here like:
+    # name = scrapy.Field()
+    pass

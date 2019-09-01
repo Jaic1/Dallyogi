@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for Dallyogi project
+# Scrapy settings for DallyogiX project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,17 +9,17 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'Dallyogi'
+BOT_NAME = 'DallyogiX'
 
-SPIDER_MODULES = ['Dallyogi.spiders']
-NEWSPIDER_MODULE = 'Dallyogi.spiders'
+SPIDER_MODULES = ['DallyogiX.spiders']
+NEWSPIDER_MODULE = 'DallyogiX.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'Dallyogi (+http://www.yourdomain.com)'
+#USER_AGENT = 'DallyogiX (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = False
+ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 CONCURRENT_REQUESTS = 1
@@ -27,7 +27,7 @@ CONCURRENT_REQUESTS = 1
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 17
+DOWNLOAD_DELAY = 15
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -47,13 +47,13 @@ DOWNLOAD_DELAY = 17
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'Dallyogi.middlewares.DallyogiSpiderMiddleware': 543,
+#    'DallyogiX.middlewares.DallyogixSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'Dallyogi.middlewares.DallyogiDownloaderMiddleware': 543,
+#    'DallyogiX.middlewares.DallyogixDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -64,13 +64,13 @@ DOWNLOAD_DELAY = 17
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-   'Dallyogi.pipelines.TweetPipeline': 300,
-}
+#ITEM_PIPELINES = {
+#    'DallyogiX.pipelines.DallyogixPipeline': 300,
+#}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
-#AUTOTHROTTLE_ENABLED = True
+# AUTOTHROTTLE_ENABLED = True
 # The initial download delay
 #AUTOTHROTTLE_START_DELAY = 5
 # The maximum download delay to be set in case of high latencies
