@@ -17,11 +17,11 @@ class BomiSpider(scrapy.Spider):
     headers = [
         {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) "
                        "AppleWebKit/537.36 (KHTML, like Gecko) "
-                       "Chrome/76.0.3809.132 "
+                       "Chrome/64.0.3282.100 "
                        "Safari/537.36"},
         {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) "
                        "AppleWebKit/537.36 (KHTML, like Gecko) "
-                       "Chrome/57.0.2987.110 "
+                       "Chrome/62.0.3202.70 "
                        "Safari/537.36"},
         {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) "
                        "AppleWebKit/537.36 (KHTML, like Gecko) "
