@@ -14,6 +14,8 @@ BOT_NAME = 'DallyogiX'
 SPIDER_MODULES = ['DallyogiX.spiders']
 NEWSPIDER_MODULE = 'DallyogiX.spiders'
 
+# log lever
+LOG_LEVEL = 'WARNING'
 
 # disable filtering duplicate requests
 DUPEFILTER_CLASS = 'scrapy.dupefilters.BaseDupeFilter'
@@ -22,7 +24,7 @@ DUPEFILTER_CLASS = 'scrapy.dupefilters.BaseDupeFilter'
 #USER_AGENT = 'DallyogiX (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 CONCURRENT_REQUESTS = 1
